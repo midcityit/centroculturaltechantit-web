@@ -22,11 +22,17 @@
     </a>
     <button class="nav-toggle" aria-label="Menú" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#vision">Visión</a></li>
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#recursos">Recursos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-      <li><a href="https://www.classy.org/give/327009/#!/donation/checkout" target="_blank" class="btn-donate">Donar</a></li>
+      <li><a href="#vision"    data-i18n="nav.vision">Visión</a></li>
+      <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="#recursos"  data-i18n="nav.resources">Recursos</a></li>
+      <li><a href="#contacto"  data-i18n="nav.contact">Contacto</a></li>
+      <li><a href="https://www.classy.org/give/327009/#!/donation/checkout" target="_blank" class="btn-donate" data-i18n="nav.donate">Donar</a></li>
+      <li>
+        <select class="lang-switch" id="lang-switch" onchange="setLang(this.value)" aria-label="Language">
+          <option value="es">🌐 Español</option>
+          <option value="en">🌐 English</option>
+        </select>
+      </li>
     </ul>
   </div>
 </nav>
@@ -37,14 +43,14 @@
   <div class="hero-content">
     <img src="logo.jpg" alt="Logo Centro Cultural Techantit" />
     <h1>Centro Cultural Techantit</h1>
-    <p class="tagline">Un río de vida — Pueblos Originarios en Abya Yala</p>
-    <p class="mission-text">
+    <p class="tagline" data-i18n="hero.tagline">Un río de vida — Pueblos Originarios en Abya Yala</p>
+    <p class="mission-text" data-i18n="hero.mission">
       Con el permiso del Gran Espíritu, Creador y Formador, con la energía de nuestros ancestros.
       Venimos de distintas tierras y tiempos, pero somos un solo río de vida.
     </p>
     <div class="hero-actions">
-      <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
-      <a href="#contacto" class="btn btn-outline">Contáctanos</a>
+      <a href="#proyectos" class="btn btn-primary" data-i18n="hero.cta.projects">Ver Proyectos</a>
+      <a href="#contacto"  class="btn btn-outline"  data-i18n="hero.cta.contact">Contáctanos</a>
     </div>
   </div>
 </section>
@@ -52,35 +58,35 @@
 <!-- ── Vision ──────────────────────────────────────────────────────────────── -->
 <section id="vision">
   <div class="container">
-    <h2 class="section-title">Visión &amp; Misión</h2>
-    <p class="section-subtitle">¡Bienvenid@s a el Centro Cultural Techantit!</p>
+    <h2 class="section-title" data-i18n="vision.title">Visión &amp; Misión</h2>
+    <p class="section-subtitle"  data-i18n="vision.subtitle">¡Bienvenid@s a el Centro Cultural Techantit!</p>
 
     <div class="vision-grid">
       <div class="vision-text">
-        <p>
+        <p data-i18n="vision.p1">
           Somos una organización orgullosamente patrocinada por
           <strong>Seven Generations Indigenous People's Fund Inc.</strong>
           Somos un espacio seguro para las comunidades indígenas refugiadas, ofreciendo
           apoyo social, preservación cultural, educación sobre derechos indígenas y recursos.
         </p>
-        <p>
+        <p data-i18n="vision.p2">
           Nuestra misión es <strong>promover la cultura de los Pueblos Originarios</strong>,
           el arte y la educación indígena a través de la recuperación de raíces ancestrales,
           la cosmovisión y las transiciones de vida para mejorar la calidad de vida comunitaria.
         </p>
-        <p>
+        <p data-i18n="vision.p3">
           Nuestro trabajo busca <strong>promover la descolonización</strong> para desmantelar
           la doctrina del descubrimiento a través de programas intergeneracionales e incluyentes
           que cultivan el bienestar comunitario.
         </p>
-        <p>
+        <p data-i18n="vision.p4">
           Organizamos comunidades indígenas en El Salvador y más allá, creando espacios donde
           tanto los indígenas como los no indígenas se sientan
           <em>respetados, empoderados y bienvenidos</em>.
         </p>
       </div>
 
-      <div class="vision-quote">
+      <div class="vision-quote" data-i18n="vision.quote">
         Con el permiso del Gran Espíritu, Creador y Formador, con la energía de nuestros ancestros.
         Venimos de distintas tierras y tiempos, pero somos un solo río de vida…
         Estamos aquí como pueblos originarios de Abya Yala, agradecidos de estar en los territorios
@@ -93,63 +99,63 @@
 <!-- ── Projects ────────────────────────────────────────────────────────────── -->
 <section id="proyectos">
   <div class="container">
-    <h2 class="section-title">Proyectos</h2>
-    <p class="section-subtitle">Nuestras nueve áreas de acción comunitaria</p>
+    <h2 class="section-title" data-i18n="projects.title">Proyectos</h2>
+    <p class="section-subtitle"  data-i18n="projects.subtitle">Nuestras nueve áreas de acción comunitaria</p>
 
     <div class="projects-grid">
 
       <div class="project-card">
         <div class="project-icon">📻</div>
-        <h3>Radio Comunitaria en Nahuizalco</h3>
-        <p>Los jóvenes involucrados en la radio comunitaria aprenden sobre periodismo y sus derechos a través de talleres de empoderamiento.</p>
+        <h3 data-i18n="proj.radio.title">Radio Comunitaria en Nahuizalco</h3>
+        <p  data-i18n="proj.radio.desc">Los jóvenes involucrados en la radio comunitaria aprenden sobre periodismo y sus derechos a través de talleres de empoderamiento.</p>
       </div>
 
       <div class="project-card">
         <div class="project-icon">🌱</div>
-        <h3>Proyectos de Apoyo a la Agricultura</h3>
-        <p>Programas de apoyo agrícola que fortalecen la soberanía alimentaria y las prácticas ancestrales de cultivo de los pueblos originarios.</p>
+        <h3 data-i18n="proj.agri.title">Proyectos de Apoyo a la Agricultura</h3>
+        <p  data-i18n="proj.agri.desc">Programas de apoyo agrícola que fortalecen la soberanía alimentaria y las prácticas ancestrales de cultivo de los pueblos originarios.</p>
       </div>
 
       <div class="project-card">
         <div class="project-icon">🏠</div>
-        <h3>Construcción y Reconstrucción de Vivienda</h3>
-        <p>Apoyo en la construcción y reconstrucción de viviendas para familias indígenas en comunidades vulnerables.</p>
+        <h3 data-i18n="proj.housing.title">Construcción y Reconstrucción de Vivienda</h3>
+        <p  data-i18n="proj.housing.desc">Apoyo en la construcción y reconstrucción de viviendas para familias indígenas en comunidades vulnerables.</p>
       </div>
 
       <div class="project-card">
         <div class="project-icon">👩‍👧</div>
-        <h3>Proyecto de Mujeres</h3>
-        <p>Iniciativas centradas en el empoderamiento de mujeres indígenas, fomentando liderazgo y bienestar comunitario.</p>
+        <h3 data-i18n="proj.women.title">Proyecto de Mujeres</h3>
+        <p  data-i18n="proj.women.desc">Iniciativas centradas en el empoderamiento de mujeres indígenas, fomentando liderazgo y bienestar comunitario.</p>
       </div>
 
       <div class="project-card">
         <div class="project-icon">🌿</div>
-        <h3>Cuidado y Defensa del Medio Ambiente</h3>
-        <p>Programas de protección ambiental basados en la cosmovisión indígena y el cuidado de la Madre Tierra.</p>
+        <h3 data-i18n="proj.env.title">Cuidado y Defensa del Medio Ambiente</h3>
+        <p  data-i18n="proj.env.desc">Programas de protección ambiental basados en la cosmovisión indígena y el cuidado de la Madre Tierra.</p>
       </div>
 
       <div class="project-card">
         <div class="project-icon">⚖️</div>
-        <h3>Talleres de Derechos Indígenas y Humanos</h3>
-        <p>Talleres de orientación sobre derechos indígenas y humanos para educar y empoderar a nuestras comunidades.</p>
+        <h3 data-i18n="proj.rights.title">Talleres de Derechos Indígenas y Humanos</h3>
+        <p  data-i18n="proj.rights.desc">Talleres de orientación sobre derechos indígenas y humanos para educar y empoderar a nuestras comunidades.</p>
       </div>
 
       <div class="project-card">
         <div class="project-icon">🤝</div>
-        <h3>Derechos como Inmigrantes y Distribución de Alimentos</h3>
-        <p>Talleres sobre derechos migratorios y programas de distribución de alimentos para comunidades en necesidad.</p>
+        <h3 data-i18n="proj.immig.title">Derechos como Inmigrantes y Distribución de Alimentos</h3>
+        <p  data-i18n="proj.immig.desc">Talleres sobre derechos migratorios y programas de distribución de alimentos para comunidades en necesidad.</p>
       </div>
 
       <div class="project-card">
         <div class="project-icon">🎨</div>
-        <h3>Programas de Revitalización Cultural y Cosmovisión</h3>
-        <p>Programas para la revitalización cultural, preservación de lenguas ancestrales y transmisión de la cosmovisión indígena.</p>
+        <h3 data-i18n="proj.culture.title">Programas de Revitalización Cultural y Cosmovisión</h3>
+        <p  data-i18n="proj.culture.desc">Programas para la revitalización cultural, preservación de lenguas ancestrales y transmisión de la cosmovisión indígena.</p>
       </div>
 
       <div class="project-card">
         <div class="project-icon">🌐</div>
-        <h3>Red Internacional Indígena</h3>
-        <p>Conexión y colaboración con redes internacionales de pueblos indígenas para la defensa de derechos y el intercambio cultural.</p>
+        <h3 data-i18n="proj.network.title">Red Internacional Indígena</h3>
+        <p  data-i18n="proj.network.desc">Conexión y colaboración con redes internacionales de pueblos indígenas para la defensa de derechos y el intercambio cultural.</p>
       </div>
 
     </div>
@@ -159,45 +165,45 @@
 <!-- ── Resources ───────────────────────────────────────────────────────────── -->
 <section id="recursos">
   <div class="container">
-    <h2 class="section-title">Recursos</h2>
-    <p class="section-subtitle">Apoyo y servicios para nuestra comunidad</p>
+    <h2 class="section-title" data-i18n="resources.title">Recursos</h2>
+    <p class="section-subtitle"  data-i18n="resources.subtitle">Apoyo y servicios para nuestra comunidad</p>
 
     <div class="resources-grid">
 
       <div class="resource-card">
-        <h3>🏥 Salud</h3>
-        <p>Recursos de aseguranzas médicas y clínicas. Acceso a atención médica para la comunidad.</p>
-        <a href="https://www.centroculturaltechantit.com/salud" target="_blank" class="resource-link">Ver recursos →</a>
+        <h3 data-i18n="res.health.title">🏥 Salud</h3>
+        <p  data-i18n="res.health.desc">Recursos de aseguranzas médicas y clínicas. Acceso a atención médica para la comunidad.</p>
+        <a href="https://www.centroculturaltechantit.com/salud" target="_blank" class="resource-link" data-i18n="res.link.view">Ver recursos →</a>
       </div>
 
       <div class="resource-card">
-        <h3>💉 COVID-19</h3>
-        <p>Sitios de vacunación y sitios de pruebas actualizados para la comunidad.</p>
-        <a href="https://www.centroculturaltechantit.com/covid19" target="_blank" class="resource-link">Ver información →</a>
+        <h3 data-i18n="res.covid.title">💉 COVID-19</h3>
+        <p  data-i18n="res.covid.desc">Sitios de vacunación y sitios de pruebas actualizados para la comunidad.</p>
+        <a href="https://www.centroculturaltechantit.com/covid19" target="_blank" class="resource-link" data-i18n="res.link.info">Ver información →</a>
       </div>
 
       <div class="resource-card">
-        <h3>🧠 Salud Mental</h3>
-        <p>Servicios de apoyo y terapia para el bienestar mental de la comunidad.</p>
-        <a href="https://www.centroculturaltechantit.com/saludmental" target="_blank" class="resource-link">Ver servicios →</a>
+        <h3 data-i18n="res.mental.title">🧠 Salud Mental</h3>
+        <p  data-i18n="res.mental.desc">Servicios de apoyo y terapia para el bienestar mental de la comunidad.</p>
+        <a href="https://www.centroculturaltechantit.com/saludmental" target="_blank" class="resource-link" data-i18n="res.link.services">Ver servicios →</a>
       </div>
 
       <div class="resource-card">
-        <h3>⚖️ Apoyo Legal</h3>
-        <p>Servicios para las visas o indocumentados. Orientación legal para la comunidad inmigrante.</p>
-        <a href="https://www.centroculturaltechantit.com/apoyo-legal" target="_blank" class="resource-link">Ver apoyo →</a>
+        <h3 data-i18n="res.legal.title">⚖️ Apoyo Legal</h3>
+        <p  data-i18n="res.legal.desc">Servicios para las visas o indocumentados. Orientación legal para la comunidad inmigrante.</p>
+        <a href="https://www.centroculturaltechantit.com/apoyo-legal" target="_blank" class="resource-link" data-i18n="res.link.support">Ver apoyo →</a>
       </div>
 
       <div class="resource-card">
-        <h3>💰 Apoyo Financiero</h3>
-        <p>Recursos de fondos y apoyo financiero para familias en necesidad.</p>
-        <a href="https://www.centroculturaltechantit.com/apoyo-financiero" target="_blank" class="resource-link">Ver fondos →</a>
+        <h3 data-i18n="res.financial.title">💰 Apoyo Financiero</h3>
+        <p  data-i18n="res.financial.desc">Recursos de fondos y apoyo financiero para familias en necesidad.</p>
+        <a href="https://www.centroculturaltechantit.com/apoyo-financiero" target="_blank" class="resource-link" data-i18n="res.link.funds">Ver fondos →</a>
       </div>
 
       <div class="resource-card">
-        <h3>👩 Apoyo Para la Mujer</h3>
-        <p>Recursos de apoyo para la mujer en situaciones difíciles. Red de apoyo comunitario.</p>
-        <a href="https://www.centroculturaltechantit.com/apoyo-para-la-mujer" target="_blank" class="resource-link">Ver recursos →</a>
+        <h3 data-i18n="res.women.title">👩 Apoyo Para la Mujer</h3>
+        <p  data-i18n="res.women.desc">Recursos de apoyo para la mujer en situaciones difíciles. Red de apoyo comunitario.</p>
+        <a href="https://www.centroculturaltechantit.com/apoyo-para-la-mujer" target="_blank" class="resource-link" data-i18n="res.link.view">Ver recursos →</a>
       </div>
 
     </div>
@@ -207,12 +213,12 @@
 <!-- ── Contact ──────────────────────────────────────────────────────────────── -->
 <section id="contacto">
   <div class="container">
-    <h2 class="section-title">Contacto</h2>
-    <p class="section-subtitle" style="color: rgba(255,255,255,.7)">Estamos aquí para apoyarte</p>
+    <h2 class="section-title" data-i18n="contact.title">Contacto</h2>
+    <p class="section-subtitle" style="color: rgba(255,255,255,.7)" data-i18n="contact.subtitle">Estamos aquí para apoyarte</p>
 
     <div class="contact-grid">
       <div class="contact-info">
-        <h3>Información de Contacto</h3>
+        <h3 data-i18n="contact.info.title">Información de Contacto</h3>
 
         <div class="contact-item">
           <span class="contact-icon">📍</span>
@@ -232,24 +238,20 @@
           <div>Fax: (213) 413-5004</div>
         </div>
 
-        <h3 style="margin-top:1.5rem">Redes Sociales</h3>
+        <h3 style="margin-top:1.5rem" data-i18n="contact.social.title">Redes Sociales</h3>
         <div class="social-links">
-          <a href="https://www.instagram.com/CCTechantit/" target="_blank" class="social-link">
-            📸 Instagram
-          </a>
-          <a href="https://www.facebook.com/centroculturaltechantit/" target="_blank" class="social-link">
-            👥 Facebook
-          </a>
+          <a href="https://www.instagram.com/CCTechantit/" target="_blank" class="social-link">📸 Instagram</a>
+          <a href="https://www.facebook.com/centroculturaltechantit/" target="_blank" class="social-link">👥 Facebook</a>
         </div>
       </div>
 
       <div class="donate-box">
-        <h3>Apoya Nuestra Misión</h3>
-        <p>
+        <h3 data-i18n="donate.title">Apoya Nuestra Misión</h3>
+        <p  data-i18n="donate.desc">
           Tu donación ayuda a preservar la cultura indígena, defender derechos,
           y apoyar a comunidades en Los Ángeles y más allá.
         </p>
-        <a href="https://www.classy.org/give/327009/#!/donation/checkout" target="_blank" class="btn btn-white">
+        <a href="https://www.classy.org/give/327009/#!/donation/checkout" target="_blank" class="btn btn-white" data-i18n="donate.btn">
           Donar Ahora
         </a>
       </div>
@@ -267,7 +269,172 @@
 </footer>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+const t = {
+  es: {
+    'nav.vision':    'Visión',
+    'nav.projects':  'Proyectos',
+    'nav.resources': 'Recursos',
+    'nav.contact':   'Contacto',
+    'nav.donate':    'Donar',
+
+    'hero.tagline': 'Un río de vida — Pueblos Originarios en Abya Yala',
+    'hero.mission': 'Con el permiso del Gran Espíritu, Creador y Formador, con la energía de nuestros ancestros. Venimos de distintas tierras y tiempos, pero somos un solo río de vida.',
+    'hero.cta.projects': 'Ver Proyectos',
+    'hero.cta.contact':  'Contáctanos',
+
+    'vision.title':    'Visión &amp; Misión',
+    'vision.subtitle': '¡Bienvenid@s a el Centro Cultural Techantit!',
+    'vision.p1': 'Somos una organización orgullosamente patrocinada por <strong>Seven Generations Indigenous People\'s Fund Inc.</strong> Somos un espacio seguro para las comunidades indígenas refugiadas, ofreciendo apoyo social, preservación cultural, educación sobre derechos indígenas y recursos.',
+    'vision.p2': 'Nuestra misión es <strong>promover la cultura de los Pueblos Originarios</strong>, el arte y la educación indígena a través de la recuperación de raíces ancestrales, la cosmovisión y las transiciones de vida para mejorar la calidad de vida comunitaria.',
+    'vision.p3': 'Nuestro trabajo busca <strong>promover la descolonización</strong> para desmantelar la doctrina del descubrimiento a través de programas intergeneracionales e incluyentes que cultivan el bienestar comunitario.',
+    'vision.p4': 'Organizamos comunidades indígenas en El Salvador y más allá, creando espacios donde tanto los indígenas como los no indígenas se sientan <em>respetados, empoderados y bienvenidos</em>.',
+    'vision.quote': 'Con el permiso del Gran Espíritu, Creador y Formador, con la energía de nuestros ancestros. Venimos de distintas tierras y tiempos, pero somos un solo río de vida… Estamos aquí como pueblos originarios de Abya Yala, agradecidos de estar en los territorios ancestrales de Isla Tortuga.',
+
+    'projects.title':    'Proyectos',
+    'projects.subtitle': 'Nuestras nueve áreas de acción comunitaria',
+
+    'proj.radio.title':   'Radio Comunitaria en Nahuizalco',
+    'proj.radio.desc':    'Los jóvenes involucrados en la radio comunitaria aprenden sobre periodismo y sus derechos a través de talleres de empoderamiento.',
+    'proj.agri.title':    'Proyectos de Apoyo a la Agricultura',
+    'proj.agri.desc':     'Programas de apoyo agrícola que fortalecen la soberanía alimentaria y las prácticas ancestrales de cultivo de los pueblos originarios.',
+    'proj.housing.title': 'Construcción y Reconstrucción de Vivienda',
+    'proj.housing.desc':  'Apoyo en la construcción y reconstrucción de viviendas para familias indígenas en comunidades vulnerables.',
+    'proj.women.title':   'Proyecto de Mujeres',
+    'proj.women.desc':    'Iniciativas centradas en el empoderamiento de mujeres indígenas, fomentando liderazgo y bienestar comunitario.',
+    'proj.env.title':     'Cuidado y Defensa del Medio Ambiente',
+    'proj.env.desc':      'Programas de protección ambiental basados en la cosmovisión indígena y el cuidado de la Madre Tierra.',
+    'proj.rights.title':  'Talleres de Derechos Indígenas y Humanos',
+    'proj.rights.desc':   'Talleres de orientación sobre derechos indígenas y humanos para educar y empoderar a nuestras comunidades.',
+    'proj.immig.title':   'Derechos como Inmigrantes y Distribución de Alimentos',
+    'proj.immig.desc':    'Talleres sobre derechos migratorios y programas de distribución de alimentos para comunidades en necesidad.',
+    'proj.culture.title': 'Programas de Revitalización Cultural y Cosmovisión',
+    'proj.culture.desc':  'Programas para la revitalización cultural, preservación de lenguas ancestrales y transmisión de la cosmovisión indígena.',
+    'proj.network.title': 'Red Internacional Indígena',
+    'proj.network.desc':  'Conexión y colaboración con redes internacionales de pueblos indígenas para la defensa de derechos y el intercambio cultural.',
+
+    'resources.title':    'Recursos',
+    'resources.subtitle': 'Apoyo y servicios para nuestra comunidad',
+
+    'res.health.title':    '🏥 Salud',
+    'res.health.desc':     'Recursos de aseguranzas médicas y clínicas. Acceso a atención médica para la comunidad.',
+    'res.covid.title':     '💉 COVID-19',
+    'res.covid.desc':      'Sitios de vacunación y sitios de pruebas actualizados para la comunidad.',
+    'res.mental.title':    '🧠 Salud Mental',
+    'res.mental.desc':     'Servicios de apoyo y terapia para el bienestar mental de la comunidad.',
+    'res.legal.title':     '⚖️ Apoyo Legal',
+    'res.legal.desc':      'Servicios para las visas o indocumentados. Orientación legal para la comunidad inmigrante.',
+    'res.financial.title': '💰 Apoyo Financiero',
+    'res.financial.desc':  'Recursos de fondos y apoyo financiero para familias en necesidad.',
+    'res.women.title':     '👩 Apoyo Para la Mujer',
+    'res.women.desc':      'Recursos de apoyo para la mujer en situaciones difíciles. Red de apoyo comunitario.',
+
+    'res.link.view':     'Ver recursos →',
+    'res.link.info':     'Ver información →',
+    'res.link.services': 'Ver servicios →',
+    'res.link.support':  'Ver apoyo →',
+    'res.link.funds':    'Ver fondos →',
+
+    'contact.title':        'Contacto',
+    'contact.subtitle':     'Estamos aquí para apoyarte',
+    'contact.info.title':   'Información de Contacto',
+    'contact.social.title': 'Redes Sociales',
+
+    'donate.title': 'Apoya Nuestra Misión',
+    'donate.desc':  'Tu donación ayuda a preservar la cultura indígena, defender derechos, y apoyar a comunidades en Los Ángeles y más allá.',
+    'donate.btn':   'Donar Ahora',
+  },
+
+  en: {
+    'nav.vision':    'Vision',
+    'nav.projects':  'Projects',
+    'nav.resources': 'Resources',
+    'nav.contact':   'Contact',
+    'nav.donate':    'Donate',
+
+    'hero.tagline': 'One river of life — Indigenous Peoples of Abya Yala',
+    'hero.mission': 'With permission of the Great Spirit, Creator and Former, and the energy of our ancestors. We come from different lands and times, but we are one river of life.',
+    'hero.cta.projects': 'View Projects',
+    'hero.cta.contact':  'Contact Us',
+
+    'vision.title':    'Vision &amp; Mission',
+    'vision.subtitle': 'Welcome to Centro Cultural Techantit!',
+    'vision.p1': 'We are an organization proudly sponsored by <strong>Seven Generations Indigenous People\'s Fund Inc.</strong> We are a safe space for Indigenous refugee communities, offering social support, cultural preservation, education on Indigenous rights, and resources.',
+    'vision.p2': 'Our mission is to <strong>promote the culture of Original Peoples</strong>, Indigenous art and education through the recovery of ancestral roots, worldview, and life transitions to improve community quality of life.',
+    'vision.p3': 'Our work seeks to <strong>advance decolonization</strong> to dismantle the doctrine of discovery through intergenerational and inclusive programs that cultivate community well-being.',
+    'vision.p4': 'We organize Indigenous communities in El Salvador and beyond, creating spaces where both Indigenous and non-Indigenous individuals feel <em>respected, empowered, and welcomed</em>.',
+    'vision.quote': 'With permission of the Great Spirit, Creator and Former, and the energy of our ancestors. We come from different lands and times, but we are one river of life… We are here as Indigenous Peoples of Abya Yala, grateful to be on the ancestral territories of Turtle Island.',
+
+    'projects.title':    'Projects',
+    'projects.subtitle': 'Our nine areas of community action',
+
+    'proj.radio.title':   'Community Radio in Nahuizalco',
+    'proj.radio.desc':    'Youth involved in community radio learn about journalism and their rights through empowerment workshops.',
+    'proj.agri.title':    'Agricultural Support Projects',
+    'proj.agri.desc':     'Agricultural support programs that strengthen food sovereignty and the ancestral farming practices of Indigenous peoples.',
+    'proj.housing.title': 'Housing Construction &amp; Reconstruction',
+    'proj.housing.desc':  'Support for the construction and reconstruction of housing for Indigenous families in vulnerable communities.',
+    'proj.women.title':   'Women\'s Project',
+    'proj.women.desc':    'Initiatives focused on the empowerment of Indigenous women, fostering leadership and community well-being.',
+    'proj.env.title':     'Environmental Care &amp; Defense',
+    'proj.env.desc':      'Environmental protection programs rooted in Indigenous worldview and the care of Mother Earth.',
+    'proj.rights.title':  'Indigenous &amp; Human Rights Workshops',
+    'proj.rights.desc':   'Orientation workshops on Indigenous and human rights to educate and empower our communities.',
+    'proj.immig.title':   'Immigrant Rights &amp; Food Distribution',
+    'proj.immig.desc':    'Workshops on immigrant rights and food distribution programs for communities in need.',
+    'proj.culture.title': 'Cultural Revitalization &amp; Worldview Programs',
+    'proj.culture.desc':  'Programs for cultural revitalization, preservation of ancestral languages, and transmission of Indigenous worldview.',
+    'proj.network.title': 'International Indigenous Network',
+    'proj.network.desc':  'Connection and collaboration with international Indigenous peoples\' networks for rights advocacy and cultural exchange.',
+
+    'resources.title':    'Resources',
+    'resources.subtitle': 'Support and services for our community',
+
+    'res.health.title':    '🏥 Health',
+    'res.health.desc':     'Medical insurance resources and clinics. Access to healthcare for the community.',
+    'res.covid.title':     '💉 COVID-19',
+    'res.covid.desc':      'Up-to-date vaccination and testing sites for the community.',
+    'res.mental.title':    '🧠 Mental Health',
+    'res.mental.desc':     'Support and therapy services for the mental well-being of the community.',
+    'res.legal.title':     '⚖️ Legal Support',
+    'res.legal.desc':      'Services for visas and undocumented individuals. Legal guidance for the immigrant community.',
+    'res.financial.title': '💰 Financial Support',
+    'res.financial.desc':  'Funding resources and financial support for families in need.',
+    'res.women.title':     '👩 Women\'s Support',
+    'res.women.desc':      'Support resources for women in difficult situations. Community support network.',
+
+    'res.link.view':     'View resources →',
+    'res.link.info':     'View information →',
+    'res.link.services': 'View services →',
+    'res.link.support':  'View support →',
+    'res.link.funds':    'View funding →',
+
+    'contact.title':        'Contact',
+    'contact.subtitle':     'We are here to support you',
+    'contact.info.title':   'Contact Information',
+    'contact.social.title': 'Social Media',
+
+    'donate.title': 'Support Our Mission',
+    'donate.desc':  'Your donation helps preserve Indigenous culture, defend rights, and support communities in Los Angeles and beyond.',
+    'donate.btn':   'Donate Now',
+  }
+};
+
+function setLang(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[lang] && t[lang][key] !== undefined) {
+      el.innerHTML = t[lang][key];
+    }
+  });
+  document.documentElement.lang = lang;
+  document.getElementById('lang-switch').value = lang;
+  localStorage.setItem('cct-lang', lang);
+}
+
+// Init
+document.getElementById('year').textContent = new Date().getFullYear();
+const saved = localStorage.getItem('cct-lang') || 'es';
+setLang(saved);
 </script>
 
 </body>

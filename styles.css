@@ -121,6 +121,25 @@ nav {
 /* Hamburger */
 .nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
+/* Language switcher */
+.lang-switch {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.3);
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='white'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 1.6rem;
+}
+.lang-switch:hover { background-color: rgba(255,255,255,.2); }
+.lang-switch option { background: var(--green-dark); color: #fff; }
+
 /* ── Hero ──────────────────────────────────────────────────────────────────── */
 #inicio {
   position: relative;
