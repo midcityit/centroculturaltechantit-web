@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noticias / News — Centro Cultural Techantit</title>
+  <link rel="icon" href="logo.jpg" type="image/jpeg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav id="top">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="logo.jpg" alt="Logo" />
+      <span>Centro Cultural Techantit</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menú" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#vision"    data-i18n="nav.vision">Visión</a></li>
+      <li><a href="index.html#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="index.html#recursos"  data-i18n="nav.resources">Recursos</a></li>
+      <li><a href="news.html"            data-i18n="nav.news" class="active">Noticias</a></li>
+      <li><a href="gallery.html"         data-i18n="nav.gallery">Galería</a></li>
+      <li><a href="index.html#contacto"  data-i18n="nav.contact">Contacto</a></li>
+      <li><a href="https://www.classy.org/give/327009/#!/donation/checkout" target="_blank" class="btn-donate" data-i18n="nav.donate">Donar</a></li>
+      <li><select class="lang-switch" id="lang-switch" onchange="setLang(this.value)" aria-label="Language">
+        <option value="es">🌐 Español</option>
+        <option value="en">🌐 English</option>
+      </select></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <a href="index.html" class="back-link" data-i18n="nav.backHome">← Inicio</a>
+    <h1 data-i18n="page.title">📰 Noticias</h1>
+    <p data-i18n="page.subtitle">Últimas noticias y anuncios de la comunidad.</p>
+  </div>
+</header>
+
+<main class="page-main">
+  <div class="container">
+    <div id="news-container" class="resource-items">
+      <p class="loading-msg" data-i18n="ui.loading">Cargando noticias…</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; <span id="year"></span> Centro Cultural Techantit &mdash; 1930 Wilshire Blvd. Suite #504, Los Ángeles, CA 90057 &mdash; <a href="tel:2136747672">(213) 674-7672</a></p>
+</footer>
+
+<script>
+const API_BASE = "https://api.centroculturaltechantit.com";
+
+const t = {
+  es: {
+    'nav.vision':'Visión','nav.projects':'Proyectos','nav.resources':'Recursos',
+    'nav.news':'Noticias','nav.gallery':'Galería','nav.contact':'Contacto',
+    'nav.donate':'Donar','nav.backHome':'← Inicio',
+    'page.title':'📰 Noticias',
+    'page.subtitle':'Últimas noticias y anuncios de la comunidad.',
+    'ui.loading':'Cargando noticias…',
+    'ui.empty':'No hay noticias disponibles en este momento.',
+    'ui.error':'No se pudieron cargar las noticias. Intente más tarde.',
+    'ui.readMore':'Leer más →',
+  },
+  en: {
+    'nav.vision':'Vision','nav.projects':'Projects','nav.resources':'Resources',
+    'nav.news':'News','nav.gallery':'Gallery','nav.contact':'Contact',
+    'nav.donate':'Donate','nav.backHome':'← Home',
+    'page.title':'📰 News',
+    'page.subtitle':'Latest news and announcements from the community.',
+    'ui.loading':'Loading news…',
+    'ui.empty':'No news available at this time.',
+    'ui.error':'Could not load news. Please try again later.',
+    'ui.readMore':'Read more →',
+  }
+};
+
+let currentLang = localStorage.getItem('cct-lang') || 'es';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    if (t[lang][el.dataset.i18n] !== undefined) el.innerHTML = t[lang][el.dataset.i18n];
+  });
+  document.documentElement.lang = lang;
+  document.getElementById('lang-switch').value = lang;
+  localStorage.setItem('cct-lang', lang);
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  return d.toLocaleDateString(currentLang === 'es' ? 'es-MX' : 'en-US', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+}
+
+function categoryLabel(cat) {
+  if (!cat) return '';
+  const labels = {
+    es: { 'Evento':'Evento', 'Anuncio':'Anuncio', 'Comunidad':'Comunidad' },
+    en: { 'Evento':'Event', 'Anuncio':'Announcement', 'Comunidad':'Community' }
+  };
+  return (labels[currentLang] || {})[cat] || cat;
+}
+
+async function loadNews() {
+  const container = document.getElementById('news-container');
+  try {
+    const res = await fetch(`${API_BASE}/news`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const items = (data.value || []).filter(i => i.fields);
+
+    if (items.length === 0) {
+      container.innerHTML = `<p class="empty-msg">${t[currentLang]['ui.empty']}</p>`;
+      return;
+    }
+
+    container.innerHTML = items.map(item => {
+      const f = item.fields;
+      const img = f.ImageUrl
+        ? `<div class="news-img-wrap"><img src="${f.ImageUrl}" alt="${f.Title || ''}" loading="lazy" /></div>`
+        : '';
+      const cat = f.Category ? `<span class="news-category">${categoryLabel(f.Category)}</span>` : '';
+      const date = f.Date ? `<span class="news-date">${formatDate(f.Date)}</span>` : '';
+      const body = f.Body ? `<p class="desc">${f.Body}</p>` : '';
+      return `
+        <div class="resource-item news-item">
+          ${img}
+          <div class="news-meta-row">${cat}${date}</div>
+          <h2>${f.Title || ''}</h2>
+          ${body}
+        </div>`;
+    }).join('');
+
+    // Re-apply translations to any newly added data-i18n elements
+    setLang(currentLang);
+  } catch (err) {
+    container.innerHTML = `<p class="error-msg">${t[currentLang]['ui.error']}</p>`;
+    console.error('News load error:', err);
+  }
+}
+
+document.getElementById('year').textContent = new Date().getFullYear();
+setLang(currentLang);
+loadNews();
+</script>
+</body>
+</html>

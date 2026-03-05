@@ -472,6 +472,101 @@ footer a:hover { color: #fff; }
   margin: 1.5rem 0 0.5rem;
 }
 
+/* ── News section (index.html preview) ────────────────────────────────────── */
+#noticias { background: var(--cream); }
+
+.news-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.news-preview-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .2s;
+}
+.news-preview-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+.news-preview-card img { width: 100%; height: 170px; object-fit: cover; display: block; }
+.news-preview-body { padding: 1rem; }
+.news-preview-body h3 { margin: 0.25rem 0 0; font-size: 1rem; color: var(--dark); }
+
+.news-date { font-size: 0.78rem; color: var(--text-muted); }
+.news-category {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  background: var(--gold);
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-right: 6px;
+}
+.news-meta-row { margin-bottom: 0.4rem; }
+
+/* ── News page (news.html) ─────────────────────────────────────────────────── */
+.news-item .news-img-wrap { margin-bottom: 0.75rem; }
+.news-item .news-img-wrap img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; }
+
+.loading-msg, .empty-msg, .error-msg {
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+/* ── Gallery page (gallery.html) ──────────────────────────────────────────── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.gallery-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow .2s;
+}
+.gallery-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+.gallery-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+.gallery-card-body { padding: 0.75rem 1rem 1rem; }
+.gallery-card-body h3 { margin: 0 0 0.25rem; font-size: 0.95rem; color: var(--dark); }
+.gallery-caption { font-size: 0.85rem; color: var(--text-muted); margin: 0.25rem 0 0; }
+.gallery-date { font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 0.4rem; }
+
+/* ── Outline button variant ───────────────────────────────────────────────── */
+.btn-outline {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  border: 2px solid var(--green);
+  border-radius: 4px;
+  color: var(--green);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.btn-outline:hover { background: var(--green); color: #fff; }
+
+/* ── Active nav link ──────────────────────────────────────────────────────── */
+.nav-links a.active { color: var(--gold); font-weight: 700; }
+
 /* ── Mobile ────────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .nav-links { display: none; flex-direction: column; width: 100%; }

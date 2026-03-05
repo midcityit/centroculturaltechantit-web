@@ -25,6 +25,8 @@
       <li><a href="#vision"    data-i18n="nav.vision">Visión</a></li>
       <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
       <li><a href="#recursos"  data-i18n="nav.resources">Recursos</a></li>
+      <li><a href="news.html"  data-i18n="nav.news">Noticias</a></li>
+      <li><a href="gallery.html" data-i18n="nav.gallery">Galería</a></li>
       <li><a href="#contacto"  data-i18n="nav.contact">Contacto</a></li>
       <li><a href="https://www.classy.org/give/327009/#!/donation/checkout" target="_blank" class="btn-donate" data-i18n="nav.donate">Donar</a></li>
       <li>
@@ -210,6 +212,20 @@
   </div>
 </section>
 
+<!-- ── Latest News ──────────────────────────────────────────────────────────── -->
+<section id="noticias">
+  <div class="container">
+    <h2 class="section-title" data-i18n="news.title">Últimas Noticias</h2>
+    <p class="section-subtitle" data-i18n="news.subtitle">Lo más reciente de nuestra comunidad</p>
+    <div id="news-preview" class="news-preview-grid">
+      <!-- Populated by JS -->
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a href="news.html" class="btn btn-outline" data-i18n="news.viewAll">Ver todas las noticias →</a>
+    </div>
+  </div>
+</section>
+
 <!-- ── Contact ──────────────────────────────────────────────────────────────── -->
 <section id="contacto">
   <div class="container">
@@ -274,6 +290,8 @@ const t = {
     'nav.vision':    'Visión',
     'nav.projects':  'Proyectos',
     'nav.resources': 'Recursos',
+    'nav.news':      'Noticias',
+    'nav.gallery':   'Galería',
     'nav.contact':   'Contacto',
     'nav.donate':    'Donar',
 
@@ -334,6 +352,12 @@ const t = {
     'res.link.support':  'Ver apoyo →',
     'res.link.funds':    'Ver fondos →',
 
+    'news.title':   'Últimas Noticias',
+    'news.subtitle':'Lo más reciente de nuestra comunidad',
+    'news.viewAll': 'Ver todas las noticias →',
+    'news.loading': 'Cargando…',
+    'news.empty':   '',
+
     'contact.title':        'Contacto',
     'contact.subtitle':     'Estamos aquí para apoyarte',
     'contact.info.title':   'Información de Contacto',
@@ -348,6 +372,8 @@ const t = {
     'nav.vision':    'Vision',
     'nav.projects':  'Projects',
     'nav.resources': 'Resources',
+    'nav.news':      'News',
+    'nav.gallery':   'Gallery',
     'nav.contact':   'Contact',
     'nav.donate':    'Donate',
 
@@ -408,6 +434,12 @@ const t = {
     'res.link.support':  'View support →',
     'res.link.funds':    'View funding →',
 
+    'news.title':   'Latest News',
+    'news.subtitle':'The latest from our community',
+    'news.viewAll': 'View all news →',
+    'news.loading': 'Loading…',
+    'news.empty':   '',
+
     'contact.title':        'Contact',
     'contact.subtitle':     'We are here to support you',
     'contact.info.title':   'Contact Information',
@@ -435,6 +467,27 @@ function setLang(lang) {
 document.getElementById('year').textContent = new Date().getFullYear();
 const saved = localStorage.getItem('cct-lang') || 'es';
 setLang(saved);
+
+// News preview (top 3 items)
+(async function loadNewsPreview() {
+  const container = document.getElementById('news-preview');
+  try {
+    const res = await fetch('https://api.centroculturaltechantit.com/news');
+    if (!res.ok) return;
+    const data = await res.json();
+    const items = (data.value || []).filter(i => i.fields).slice(0, 3);
+    if (items.length === 0) return;
+    const lang = localStorage.getItem('cct-lang') || 'es';
+    container.innerHTML = items.map(item => {
+      const f = item.fields;
+      const date = f.Date ? new Date(f.Date).toLocaleDateString(
+        lang === 'es' ? 'es-MX' : 'en-US', { year:'numeric', month:'long', day:'numeric' }
+      ) : '';
+      const img = f.ImageUrl ? `<img src="${f.ImageUrl}" alt="${f.Title||''}" loading="lazy" />` : '';
+      return `<a href="news.html" class="news-preview-card">${img}<div class="news-preview-body"><span class="news-date">${date}</span><h3>${f.Title||''}</h3></div></a>`;
+    }).join('');
+  } catch(e) { /* silent — section stays empty */ }
+})();
 </script>
 
 </body>

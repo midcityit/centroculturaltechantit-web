@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería / Gallery — Centro Cultural Techantit</title>
+  <link rel="icon" href="logo.jpg" type="image/jpeg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav id="top">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="logo.jpg" alt="Logo" />
+      <span>Centro Cultural Techantit</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menú" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#vision"    data-i18n="nav.vision">Visión</a></li>
+      <li><a href="index.html#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="index.html#recursos"  data-i18n="nav.resources">Recursos</a></li>
+      <li><a href="news.html"            data-i18n="nav.news">Noticias</a></li>
+      <li><a href="gallery.html"         data-i18n="nav.gallery" class="active">Galería</a></li>
+      <li><a href="index.html#contacto"  data-i18n="nav.contact">Contacto</a></li>
+      <li><a href="https://www.classy.org/give/327009/#!/donation/checkout" target="_blank" class="btn-donate" data-i18n="nav.donate">Donar</a></li>
+      <li><select class="lang-switch" id="lang-switch" onchange="setLang(this.value)" aria-label="Language">
+        <option value="es">🌐 Español</option>
+        <option value="en">🌐 English</option>
+      </select></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="container">
+    <a href="index.html" class="back-link" data-i18n="nav.backHome">← Inicio</a>
+    <h1 data-i18n="page.title">🖼 Galería</h1>
+    <p data-i18n="page.subtitle">Fotos de eventos y actividades de nuestra comunidad.</p>
+  </div>
+</header>
+
+<main class="page-main">
+  <div class="container">
+    <div id="gallery-container" class="gallery-grid">
+      <p class="loading-msg" data-i18n="ui.loading">Cargando galería…</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; <span id="year"></span> Centro Cultural Techantit &mdash; 1930 Wilshire Blvd. Suite #504, Los Ángeles, CA 90057 &mdash; <a href="tel:2136747672">(213) 674-7672</a></p>
+</footer>
+
+<script>
+const API_BASE = "https://api.centroculturaltechantit.com";
+
+const t = {
+  es: {
+    'nav.vision':'Visión','nav.projects':'Proyectos','nav.resources':'Recursos',
+    'nav.news':'Noticias','nav.gallery':'Galería','nav.contact':'Contacto',
+    'nav.donate':'Donar','nav.backHome':'← Inicio',
+    'page.title':'🖼 Galería',
+    'page.subtitle':'Fotos de eventos y actividades de nuestra comunidad.',
+    'ui.loading':'Cargando galería…',
+    'ui.empty':'No hay fotos disponibles en este momento.',
+    'ui.error':'No se pudo cargar la galería. Intente más tarde.',
+  },
+  en: {
+    'nav.vision':'Vision','nav.projects':'Projects','nav.resources':'Resources',
+    'nav.news':'News','nav.gallery':'Gallery','nav.contact':'Contact',
+    'nav.donate':'Donate','nav.backHome':'← Home',
+    'page.title':'🖼 Gallery',
+    'page.subtitle':'Photos from our community events and activities.',
+    'ui.loading':'Loading gallery…',
+    'ui.empty':'No photos available at this time.',
+    'ui.error':'Could not load gallery. Please try again later.',
+  }
+};
+
+let currentLang = localStorage.getItem('cct-lang') || 'es';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    if (t[lang][el.dataset.i18n] !== undefined) el.innerHTML = t[lang][el.dataset.i18n];
+  });
+  document.documentElement.lang = lang;
+  document.getElementById('lang-switch').value = lang;
+  localStorage.setItem('cct-lang', lang);
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  return d.toLocaleDateString(currentLang === 'es' ? 'es-MX' : 'en-US', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+}
+
+async function loadGallery() {
+  const container = document.getElementById('gallery-container');
+  try {
+    const res = await fetch(`${API_BASE}/gallery`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const items = (data.value || []).filter(i => i.fields && i.fields.ImageUrl);
+
+    if (items.length === 0) {
+      container.className = 'resource-items';
+      container.innerHTML = `<p class="empty-msg">${t[currentLang]['ui.empty']}</p>`;
+      return;
+    }
+
+    container.innerHTML = items.map(item => {
+      const f = item.fields;
+      const caption = f.Caption ? `<p class="gallery-caption">${f.Caption}</p>` : '';
+      const date = f.Date ? `<span class="gallery-date">${formatDate(f.Date)}</span>` : '';
+      return `
+        <div class="gallery-card">
+          <a href="${f.ImageUrl}" target="_blank" rel="noopener">
+            <img src="${f.ImageUrl}" alt="${f.Title || ''}" loading="lazy" />
+          </a>
+          <div class="gallery-card-body">
+            <h3>${f.Title || ''}</h3>
+            ${caption}
+            ${date}
+          </div>
+        </div>`;
+    }).join('');
+  } catch (err) {
+    container.className = 'resource-items';
+    container.innerHTML = `<p class="error-msg">${t[currentLang]['ui.error']}</p>`;
+    console.error('Gallery load error:', err);
+  }
+}
+
+document.getElementById('year').textContent = new Date().getFullYear();
+setLang(currentLang);
+loadGallery();
+</script>
+</body>
+</html>
